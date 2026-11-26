@@ -140,10 +140,10 @@
   .photo-frame::before{animation:photoFloat 5.5s ease-in-out 1.1s infinite}
   .hero .kicker{animation:fadeUp .7s cubic-bezier(.22,.61,.36,1) .15s both}
   .hero h1 .hw{display:inline-block;animation:wordIn .75s cubic-bezier(.22,.61,.36,1) both;animation-delay:var(--d,.3s)}
-  .hero .role{animation:fadeUp .7s cubic-bezier(.22,.61,.36,1) 1.95s both}
-  .hero .lede{animation:fadeUp .7s cubic-bezier(.22,.61,.36,1) 2.1s both}
-  .hero .hero-cta{animation:fadeUp .7s cubic-bezier(.22,.61,.36,1) 2.25s both}
-  .hero .hero-meta{animation:fadeUp .7s cubic-bezier(.22,.61,.36,1) 1.25s both}
+  .hero .role{animation:fadeUp .7s cubic-bezier(.22,.61,.36,1) 2.6s both}
+  .hero .lede{animation:fadeUp .7s cubic-bezier(.22,.61,.36,1) 2.75s both}
+  .hero .hero-cta{animation:fadeUp .7s cubic-bezier(.22,.61,.36,1) 2.9s both}
+  .hero .hero-meta{animation:fadeUp .7s cubic-bezier(.22,.61,.36,1) 3.05s both}
   .avail{animation:fadeUp .6s ease 1.35s both}
   .hero-in{position:relative;z-index:1;display:grid;grid-template-columns:300px 1fr;gap:44px;padding:56px 0 52px;align-items:center}
   @media (max-width:820px){ .hero-in{grid-template-columns:1fr;gap:28px;padding:40px 0 38px;text-align:center;justify-items:center} }
@@ -497,14 +497,17 @@
   .sb:hover .sb-fill{filter:brightness(1.08)}
 
 
-  /* ---------- animated hero name: letters rise in one by one, then a soft gold shimmer ---------- */
-  .hero-name{display:inline-block;position:relative;animation:nameFloat 7s ease-in-out 2.6s infinite}
-  .hero h1.hero-name .hw{animation:none}
-  .hero-name .hl{display:inline-block;opacity:0;animation:letterIn .8s cubic-bezier(.22,.61,.36,1) both;animation-delay:var(--d,.3s)}
-  @keyframes letterIn{from{opacity:0;transform:translateY(30px) rotate(3deg)}to{opacity:1;transform:none}}
-  @keyframes nameFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-  .hero-name::after{content:"";position:absolute;inset:-6% -2%;pointer-events:none;background:linear-gradient(105deg,transparent 42%,rgba(201,162,75,.30) 50%,transparent 58%);background-size:250% 100%;background-position:200% 0;mix-blend-mode:soft-light;animation:shimmerSweep 7s ease-in-out 3s infinite}
-  @keyframes shimmerSweep{0%{background-position:200% 0}55%{background-position:-60% 0}100%{background-position:-60% 0}}
+  /* ---------- hero name: looping word-by-word typing, as if being written ---------- */
+  .hero-name{white-space:nowrap;transition:opacity .6s ease}
+  .hero-name.typing-out{opacity:0}
+  .hero-name .type-word{white-space:nowrap}
+  .type-caret{display:inline-block;width:.09em;height:1em;background:#c9a24b;margin-left:.08em;vertical-align:-.1em;animation:caretBlink 1s steps(1) infinite}
+  @keyframes caretBlink{0%,49%{opacity:1}50%,100%{opacity:0}}
+  @media (max-width:480px){ .hero-name{font-size:2.5rem} }
+
+  /* ---------- word-by-word entrance: headings, About, card titles, stat lines ---------- */
+  .js .ww{display:inline-block;opacity:0;transform:translateY(.35em);transition:opacity .5s ease,transform .5s cubic-bezier(.22,.61,.36,1);transition-delay:var(--wd,0s)}
+  .js .ww-in .ww{opacity:1;transform:none}
 
   /* ---------- staggered skills entrance: one skill at a time, label first, then its bar ---------- */
   .js .sb{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,.61,.36,1);transition-delay:var(--sd,0s)}
@@ -514,10 +517,10 @@
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto}
     .proj,.flagship,.stat,.btn,.contact-row,.theme-btn,.sb-fill,.card,.filter-btn,.sec-head .rule,.nav a::after,.btn::after,.filter-btn::after{transition:none}
-    .hero::before,.avail i,.photo-frame,.photo-frame img,.photo-frame::before,.hero .kicker,.hero h1 .hw,.hero .role,.hero .lede,.hero .hero-cta,.hero .hero-meta,.avail,.hero-shapes .shape,.stats.in .stat,.skill-bars.in .sb-fill::after{animation:none}
-    .hero-name{animation:none}
-    .hero-name .hl{opacity:1;animation:none}
-    .hero-name::after{display:none}
+    .hero::before,.avail i,.photo-frame,.photo-frame img,.photo-frame::before,.hero .kicker,.hero .role,.hero .lede,.hero .hero-cta,.hero .hero-meta,.avail,.hero-shapes .shape,.stats.in .stat,.skill-bars.in .sb-fill::after{animation:none}
+    .hero-name{transition:none}
+    .type-caret{display:none}
+    .js .ww{opacity:1;transform:none;transition:none}
     .js .sb{opacity:1;transform:none;transition:none}
     .sec-head .rule{transform:scaleX(1)}
     .js .reveal{opacity:1;transform:none;transition:none}
@@ -572,7 +575,7 @@
     </div>
     <div>
       <p class="kicker">Data Analyst · Dhaka, Bangladesh</p>
-      <h1 class="serif hero-name" aria-label="Md Emon Rana"><span class="hw" aria-hidden="true"><span class="hl" style="--d:.30s">M</span><span class="hl" style="--d:.38s">d</span></span> <span class="hw" aria-hidden="true"><span class="hl" style="--d:.48s">E</span><span class="hl" style="--d:.56s">m</span><span class="hl" style="--d:.64s">o</span><span class="hl" style="--d:.72s">n</span></span> <span class="hw" aria-hidden="true"><em><span class="hl" style="--d:.82s">R</span><span class="hl" style="--d:.90s">a</span><span class="hl" style="--d:.98s">n</span><span class="hl" style="--d:1.06s">a</span></em></span></h1>
+      <h1 class="serif hero-name" aria-label="Md Emon Rana"><span class="type-words" aria-hidden="true"><span class="type-word">Md</span> <span class="type-word">Emon</span> <span class="type-word"><em>Rana</em></span></span><span class="type-caret" aria-hidden="true"></span></h1>
       <p class="role">Aspiring Data Analyst &nbsp;|&nbsp; Python, SQL &amp; Machine Learning</p>
       <p class="lede">I'm a final year CSE student. I like working with data. Most of my projects use real data — hospital records, rice prices, Dhaka weather. I clean the data, make charts and try simple ML models to see what I can find.</p>
       <div class="hero-cta">
@@ -1111,6 +1114,82 @@
         if ('IntersectionObserver' in window) {
           new IntersectionObserver(function(en){ if (en[0].isIntersecting) startDust(); else stopDust(); }, { threshold: 0 }).observe(hero);
         }
+      }
+    }
+
+    /* ---------- hero name: looping word-by-word typing ---------- */
+    var heroWords = document.querySelector('.hero-name .type-words');
+    var heroH1 = document.querySelector('.hero-name');
+    var NAME_WORDS = [{t:'Md'}, {t:'Emon'}, {t:'Rana', em:true}];
+    var TYPE_MS = 140, WORD_GAP = 350, HOLD_MS = 2500;
+    function typeNameLoop(){
+      if (!heroWords || !heroH1 || reduceMotion) return;
+      heroWords.innerHTML = '';
+      heroH1.classList.remove('typing-out');
+      var wi = 0, ci = 0, curSpan = null, curTarget = null;
+      function typeStep(){
+        if (wi >= NAME_WORDS.length) {
+          setTimeout(function(){
+            heroH1.classList.add('typing-out');
+            setTimeout(typeNameLoop, 650);
+          }, HOLD_MS);
+          return;
+        }
+        var w = NAME_WORDS[wi];
+        if (ci === 0) {
+          if (wi > 0) heroWords.appendChild(document.createTextNode(' '));
+          curSpan = document.createElement('span');
+          curSpan.className = 'type-word';
+          if (w.em) { var emEl = document.createElement('em'); curSpan.appendChild(emEl); curTarget = emEl; }
+          else { curTarget = curSpan; }
+          heroWords.appendChild(curSpan);
+        }
+        curTarget.textContent = w.t.slice(0, ci + 1);
+        ci++;
+        if (ci >= w.t.length) { wi++; ci = 0; setTimeout(typeStep, WORD_GAP); }
+        else { setTimeout(typeStep, TYPE_MS); }
+      }
+      setTimeout(typeStep, 300);
+    }
+    typeNameLoop();
+
+    /* ---------- word-by-word entrance: headings, About, card titles, stat lines ---------- */
+    function splitWords(el){
+      var kids = Array.prototype.slice.call(el.childNodes);
+      kids.forEach(function(node){
+        if (node.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          node.textContent.split(/(\s+)/).forEach(function(part){
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+            var s = document.createElement('span');
+            s.className = 'ww';
+            s.textContent = part;
+            frag.appendChild(s);
+          });
+          el.replaceChild(frag, node);
+        } else if (node.nodeType === 1 && !node.classList.contains('tl-tag')) {
+          splitWords(node);
+        }
+      });
+    }
+    if (!reduceMotion) {
+      var wordTargets = Array.prototype.slice.call(document.querySelectorAll('.sec-head h2, #contact h2, .two-col .card h3, .tl-item h3, #about .sec-sub, .flagship h3, .flagship .flag-metric .small, .flagship .flag-metric .big, .proj-grid .proj h3, .proj-grid .proj .metric .small, .proj-grid .proj .metric .big'));
+      wordTargets.forEach(function(el){
+        splitWords(el);
+        var step = el.classList.contains('sec-sub') ? 0.055 : 0.075;
+        var words = el.querySelectorAll('.ww');
+        words.forEach(function(wd, i){ wd.style.setProperty('--wd', (i * step).toFixed(3) + 's'); });
+      });
+      if ('IntersectionObserver' in window) {
+        var wordObs = new IntersectionObserver(function(entries){
+          entries.forEach(function(en){
+            if (en.isIntersecting) { en.target.classList.add('ww-in'); wordObs.unobserve(en.target); }
+          });
+        }, { threshold: 0.2, rootMargin: '0px 0px 60px 0px' });
+        wordTargets.forEach(function(el){ wordObs.observe(el); });
+      } else {
+        wordTargets.forEach(function(el){ el.classList.add('ww-in'); });
       }
     }
 
